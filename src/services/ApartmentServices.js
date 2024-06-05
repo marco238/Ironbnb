@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const http = axios.create({
-  baseURL: 'https://ironbnb-m3.herokuapp.com',
+  baseURL: 'http://localhost:3000',
 });
 
 http.interceptors.response.use(function(response) {
@@ -16,4 +16,8 @@ export const listApartments = () => {
 
 export const getApartment = (id) => {
   return http.get(`/apartments/${id}`);
+}
+
+export const addApartment = (apt) => {
+  return http.post('/apartments', apt);
 }
