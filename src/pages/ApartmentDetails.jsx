@@ -15,7 +15,7 @@ function ApartmentDetails() {
       })
       .catch((e) => console.log(e))
       .finally(() => setLoading(false))
-  }, [])
+  }, [id])
 
   if (loading) {
     return (
