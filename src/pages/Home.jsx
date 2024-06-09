@@ -22,7 +22,7 @@ function Home() {
 
   return (
     <>
-      <h1>Home</h1>
+      <h1 className="mb-5">Ironbnb</h1>
 
       {loading ? (
         <div className="spinner-border" role="status">

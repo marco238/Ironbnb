@@ -3,3 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 }
+
+form {
+  max-width: 400px;
+  margin: auto;
+  text-align: start;
+}
