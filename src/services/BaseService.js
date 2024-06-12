@@ -22,10 +22,12 @@ const createHttp = (useAccessToken = false) => {
 
   http.interceptors.response.use(
     function (response) {
+      console.log(response);
       return response.data;
     },
     function (error) {
       // if (error && err.response && err.response.status) // Codigo equivalente
+      console.log("ERROR", error);
       if (
         error?.response?.status &&
         INVALID_STATUS_CODES.includes(error.response.status)
@@ -36,7 +38,7 @@ const createHttp = (useAccessToken = false) => {
         }
       }
 
-      return Promise.reject(error);
+      return Promise.reject(error.response.data);
     }
   );
 

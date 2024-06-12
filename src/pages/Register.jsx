@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createUser } from "../services/UserService";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Register = () => {
+  const { user: currentUser, isAuthLoaded } = useContext(AuthContext);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -31,7 +33,13 @@ const Register = () => {
       })
   }
 
+  if (!isAuthLoaded) {
+    return <p>Loading...</p>
+  }
 
+  if (currentUser) {
+    return <Navigate to="/profile" />;
+  }
 
   return (
     <div>

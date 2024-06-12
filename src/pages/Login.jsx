@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { loginService } from "../services/UserService";
 import { AuthContext } from "../contexts/AuthContext";
 import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const { login, user: currentUser } = useContext(AuthContext);
+  const [error, setError] = useState(null);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -27,7 +28,8 @@ const Login = () => {
         login(token)
       })
       .catch(err => {
-        console.error(err)
+        console.log(err)
+        setError(err);
       })
   }
 
@@ -50,7 +52,9 @@ const Login = () => {
           <label htmlFor="password" className="form-label">Password</label>
           <input name="password" onChange={handleInputChange} value={user.password} type="password" className="form-control" id="password" required placeholder="Add a password..." />
         </div>
-
+        {error && <p className="text-danger">
+          {error.message}
+        </p>}
         <button type="submit" className="btn btn-primary">Login</button>
       </form>
     </div>
