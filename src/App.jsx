@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import ApartmentDetails from './pages/ApartmentDetails'
 import ApartmentForm from './pages/ApartmentForm'
+import Register from './pages/Register'
+import Login from './pages/Login'
 
 function App() {
   return (
@@ -14,12 +16,16 @@ function App() {
       <div className="container mt-5">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/apartments/add" element={<ApartmentForm />} />
           <Route path="/apartments/edit/:id" element={<ApartmentForm />} />
           <Route path="/apartments/:id" element={<ApartmentDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
+
+
     </>
   )
 }

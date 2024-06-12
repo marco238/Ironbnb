@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { listApartments } from "../services/ApartmentServices";
 import { Link } from "react-router-dom";
 import { parseDate } from "../../public/utils";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 function Home() {
   const [apartments, setApartments] = useState([])
   const [loading, setLoading] = useState(true)
+  const { theme, toggleTheme } = useContext(ThemeContext)
 
   useEffect(() => {
     listApartments()
       .then((apartments) => {
+        console.log(apartments)
         setApartments(apartments)
       })
       .catch((error) => {
@@ -45,6 +48,10 @@ function Home() {
               </div>
             </div>
           ))}
+
+          <button onClick={toggleTheme} className={`btn btn-lg text-${theme === 'light' ? 'dark' : 'light'} btn-${theme}`}>
+            theme is {theme}
+          </button>
         </div>
       )}
     </>
