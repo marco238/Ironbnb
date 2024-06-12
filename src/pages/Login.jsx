@@ -1,9 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { loginService } from "../services/UserService";
 import { AuthContext } from "../contexts/AuthContext";
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login, user: currentUser } = useContext(AuthContext);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -29,6 +30,12 @@ const Login = () => {
         console.error(err)
       })
   }
+
+
+  if (currentUser) {
+    return <Navigate to="/profile" />;
+  }
+
 
   return (
     <div>
